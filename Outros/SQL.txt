@@ -1,0 +1,38 @@
+USE pasta --pega um banco da pasta
+SELECT * FROM data; --pega todo o banco
+SELECT vars FROM data; --pega algumas colunas/variáveis do banco
+... WHERE var = 'x'; --pega linhas onde a condição é satisfeita (>, <, >=, <=, !=)
+... WHERE var BETWEEN x AND y; --intervalo (NOT BETWEEN)
+AND --mais de uma condição
+OR --uma das condições
+... WHERE var IN ('a', 'b') --variável pode ser alguma dessas categorias (NOT IN)
+SELECT DISTINCIT vars ...; --retorna uma categoria de cada variável (ou combinação), não retorna duplicado
+... ORDER BY var; --ordena (crescente) o banco por uma variável
+... ORDER BY var DESC; --ordem decrescente
+... LIMIT X; --retorna X linhas
+SELECT TOP X; --retorna X linhas
+SELECT COUNT(*) FROM data; --retorna número de linhas 
+SELECT SUM(var) FROM data; --retorna soma de uma variável
+SELECT AVG(var) FROM data; --retorna média de uma variável
+SELECT MIN(var) FROM data; --retorna mínimo de uma variável
+SELECT MAX(var) FROM data; --retorna máximo de uma variável
+... AS nome_var; --muda nome da coluna/variável
+... data AS x; --muda nome da tabela para 'x'
+... GROUP BY; --agrupa resultado das funções pelas categorias de uma variável
+... WHERE var = (SELECT ...); --nested queries
+... WHERE var IS NOT NULL; --tira os null (IS NULL)
+... WHERE var > 'yyyy-mm-dd'; --dado do tipo data, comparável
+SELECT a.var1, b.var2... FROM a INNER JOIN b ON a.id = b.id; --inner join (interseção, não inclui NULL)
+SELECT a.var1, c.var2... FROM a INNER JOIN b ON a.id = b.id1 INNER JOIN c ON b.id2 = c.id; --ligar a e c, passando por b
+... LEFT JOIN ... --liga todas as observações (não só os que tem 'interseção', inclui NULL)
+SELECT a.var, b.var FROM data AS a INNER JOIN data AS b ON a.id2 = b.id1 #SELF JOIN (liga uma tabela em si mesmo)
+... WHERE var LIKE "%nome%" --retorna observações com "nome" em alguma parte
+... WHERE var LIKE "nome_" --retorna observações "nome" mais algum caracter
+SELECT ... CASE WHEN var = cat1 THEN resp1 ... ELSE resp2 END AS nome ... FROM; --cria nova coluna baseada nas outras
+... WHERE SUBSTR(var, -x) LIKE '__' --substr pega um pedaço da string
+SELECT COALESCE(var1, var2) as var ...; --retorna o primeiro não nulo entre var1 e var2 na variável var
+
+Obs:
+'nome'
+-- comentário
+pode combinar mais de uma condição da mesma variável (BETWEEN, <, ...)
